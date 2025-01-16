@@ -83,7 +83,7 @@ DATABASES = {
         'NAME': 'simple_lms',
         'USER': 'simple_user',
         'PASSWORD' : 'simple_password',
-        'HOST' : 'simple_db',
+        'HOST' : 'postgres',
     }
 }
 

@@ -18,8 +18,8 @@ from ninja.throttling import AnonRateThrottle, AuthRateThrottle
 
 apiv1 = NinjaAPI(
     throttle=[
-        AnonRateThrottle('10/m'), # Maksimum 10 permintaan per detik untuk pengguna anonim
-        AuthRateThrottle('100/m'), # Maksimum 100 permintaan per detik untuk pengguna terautentikasi
+        AnonRateThrottle('10/s'), # Maksimum 10 permintaan per detik untuk pengguna anonim
+        AuthRateThrottle('100/s'), # Maksimum 100 permintaan per detik untuk pengguna terautentikasi
     ],
 )
 apiv1.add_router("/auth/", mobile_auth_router)

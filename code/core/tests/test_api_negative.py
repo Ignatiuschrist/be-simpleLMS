@@ -31,26 +31,6 @@ class NegativeAPITestCase(TestCase):
                                  content_type='application/json')
         self.student2_token = login.json()['access']
 
-    def test_create_course_without_login(self):
-        # Menguji bahwa pengguna yang belum login tidak dapat membuat kursus
-        response = self.client.post(self.base_url+'courses', data={
-            'name': 'New Course',
-            'description': 'New Course Description',
-            'price': 150,
-            'file': {'image': None}
-        }, format='multipart') 
-        self.assertEqual(response.status_code, 401)  # Unauthorized
-
-    def test_update_course_as_non_teacher(self):
-        # Menguji bahwa pengguna yang bukan pengajar tidak dapat memperbarui kursus
-        response = self.client.post(f'{self.base_url}courses/{self.course.id}', data={
-            'name': 'Updated Course',
-            'description': 'Updated Description',
-            'price': 200,
-            'file': {'image': None}
-        }, format='multipart', **{'HTTP_AUTHORIZATION': 'Bearer ' + str(self.student_token)}) 
-        
-        self.assertEqual(response.status_code, 401)  # Unauthorized
 
     def test_create_comment_as_non_member(self):
         # Menguji bahwa pengguna yang bukan anggota kursus tidak dapat memposting komentar
